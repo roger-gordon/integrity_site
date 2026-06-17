@@ -1,7 +1,7 @@
 ---
 layout: home
 title: Home
-landing-title: 'Hi, my name is Forty'
+landing-title: 'the world of knowledge is not flat.'
 description: null
 image: null
 author: null
