@@ -12,7 +12,7 @@ show_tile: false
 <section id="one">
 	<div class="inner">
 		<p style="font-size: 1.1em; margin-bottom: 2em;">
-			<a href="mailto:search@ithinking.tech" class="button">search@ithinking.tech</a>
+			<a href="mailto:hello@ithinking.tech" class="button">hello@ithinking.tech</a>
 		</p>
 		<p>
 			<a href="https://www.linkedin.com/company/ithinking" target="_blank" class="button circle" style="font-size: 0.6em; height: 3.5em; line-height: 3.5em; width: 3.5em;">in</a>
