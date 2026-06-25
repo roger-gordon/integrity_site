@@ -23,7 +23,7 @@
 		line-height: 3.25em;
 		margin: 0;
 		position: fixed;
-		text-transform: uppercase;
+		// text-transform: uppercase removed — mixed case logotype
 		top: 0;
 		width: 100%;
 		z-index: _misc(z-index-base);
@@ -41,8 +41,8 @@
 					'background-color #{_duration(transition)} ease-in-out',
 					'color #{_duration(transition)} ease-in-out'
 				));
-				background-color: _palette(fg-bold);
-				color: _palette(bg);
+				background-color: rgba(255,255,255,0.15);
+				color: _palette(fg-bold);
 				display: inline-block;
 				line-height: 1.65em;
 				margin-right: 0.325em;
@@ -51,13 +51,13 @@
 
 			&:hover {
 				strong {
-					background-color: _palette(highlight);
+					background-color: rgba(255,255,255,0.25);
 				}
 			}
 
 			&:active {
 				strong {
-					background-color: desaturate(darken(_palette(highlight), 15), 5);
+					background-color: rgba(255,255,255,0.35);
 				}
 			}
 		}

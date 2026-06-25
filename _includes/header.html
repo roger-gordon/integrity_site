@@ -2,28 +2,30 @@
 <div id="wrapper">
 
 <!-- Header -->
-<header id="header"{% if page.layout == "landing" %} class="alt style2"{% endif %}{% if page.layout == "home" %} class="alt"{% endif %}>
-	<a href="{{ "" | absolute_url }}/" class="logo"><strong>{{ site.title }}</strong></a>
+<header id="header"{% if page.layout == "landing" %} class="alt"{% endif %}{% if page.layout == "home" %} class="alt"{% endif %}>
+	<a href="{{ "" | relative_url }}/" class="logo" style="border:none; background:none; padding:0;"><strong style="font-family:Georgia,serif; font-size:22px; font-weight:bold; letter-spacing:-0.5px; text-transform:none; color:#ffffff;">integrity</strong></a>
 	<nav>
-		<a href="#menu">Menu</a>
+		<a href="#menu">menu</a>
 	</nav>
 </header>
+
 
 <!-- Menu -->
 <nav id="menu">
 	<ul class="links">
         {% for page in site.pages %}
 		    {% if page.layout == "home" %}
-		        <li><a href="{{ "" | absolute_url }}/">{{ page.title }}</a></li>
+		        <li><a href="{{ "" | relative_url }}/">{{ page.title }}</a></li>
 	    	{% endif %}
 		{% endfor %}
-		{% for page in site.html_pages %}
-		    {% if page.layout != "home" and page.nav-menu == true %}
-		        <li><a href="{{ page.url | absolute_url }}">{{ page.title }}</a></li>
+		{% assign nav_pages = site.html_pages | where_exp: "item", "item.nav-menu == true" | sort: "nav-order" %}
+		{% for page in nav_pages %}
+		    {% if page.layout != "home" %}
+				<li><a href="{{ page.url | relative_url }}">{{ page.nav-title | default: page.title }}</a></li>
 		    {% endif %}
 		{% endfor %}
 	</ul>
 	<ul class="actions vertical">
-        <li><a href="/contact" class="button special fit">Start</a></li>
+        <li><a href="{{ "/contact" | relative_url }}" class="button special fit">contact</a></li>
 	</ul>
 </nav>

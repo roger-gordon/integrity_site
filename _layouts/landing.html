@@ -1,31 +1,53 @@
-<!DOCTYPE html>
+<!doctype html>
 <!--
-	Forty by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+Forty by HTML5 UP
+html5up.net | @ajlkn
+Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 -->
 <html>
 
-    {% include head.html %}
+    <head>
+    	<title>{% if page.title %}{{ page.title }} | {% endif %}{{ site.title }}</title>
+    	<meta charset="utf-8" />
+    	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    	<!--[if lte IE 8]><script src="{{ "assets/js/ie/html5shiv.js" | relative_url }}"></script><![endif]-->
+    	<link rel="stylesheet" href="{{ "assets/css/main.css" | relative_url }}" />
+    	<!--[if lte IE 9]><link rel="stylesheet" href="{{ "assets/css/ie9.css" | relative_url }}" /><![endif]-->
+    	<!--[if lte IE 8]><link rel="stylesheet" href="{{ "assets/css/ie8.css" | relative_url }}" /><![endif]-->
+    	{% if page.hide_chrome %}
+    	<style>
+    		#banner { display: none !important; }
+    		#contact { display: none !important; }
+    		footer { display: none !important; }
+
+    		#play-frame {
+    			position: fixed;
+    			top: 0;
+    			left: 0;
+    			width: 100%;
+    			height: 100vh;
+    			border: none;
+    			display: block;
+    			z-index: 999;
+    		}
+    	</style>
+    	{% endif %}
+    </head>
 
     <body>
 
         {% include header.html %}
 
-        <section id="banner" class="style2">
+        <section id="banner"{% if page.banner-style %} class="{{ page.banner-style }}"{% endif %}>
             <div class="inner">
                 <span class="image">
                     <img src="{{ site.baseurl }}/{{ page.image }}" alt="">
                 </span>
                 <header class="major">
-
                     <h1>{{ page.title }}</h1>
-
                 </header>
                 <div class="content">
-
                     {{ page.description }}
-
                 </div>
             </div>
         </section>

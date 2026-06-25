@@ -3,14 +3,40 @@
 {% elsif 'pages' == site.tiles-source %}
     {% assign tiles = site.html_pages | where_exp: "item", "item.show_tile != false" %}
 {% endif %}
+<style>
+    .tile-kicker {
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        width: 2.5em;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 3;
+        font-size: 0.65em;
+        font-weight: 500;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: rgba(255,255,255,0.85);
+        background: linear-gradient(to right, rgba(0,0,0,0.35), rgba(0,0,0,0));
+        pointer-events: none;
+        white-space: nowrap;
+    }
+    .tile-kicker span {
+        writing-mode: vertical-rl;
+        transform: rotate(180deg);
+    }
+</style>
 <section id="one" class="tiles">
   {% for tile in tiles limit:site.tiles-count %}
-  <article>
+  <article id="tile-{{ tile.title | slugify }}">
     <span class="image">
       <img src="{{ tile.image }}" alt="{{ tile.title }}" />
     </span>
+    {% if tile.audience %}<span class="tile-kicker"><span>{{ tile.audience }}</span></span>{% endif %}
     <header class="major">
-      <h3><a href="{{ tile.url  | relative_url }}" class="link">{{ tile.title }}</a></h3>
+      <h3><a href="{{ tile.tile-url | default: tile.url | relative_url }}" class="link">{{ tile.title }}</a></h3>
       <p>{{ tile.description }}</p>
     </header>
   </article>

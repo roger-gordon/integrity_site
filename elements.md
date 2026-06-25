@@ -2,7 +2,9 @@
 layout: page
 title: Elements
 image: assets/images/pic01.jpg
-nav-menu: true
+nav-menu: false
+nav-order: 6
+show_tile: false
 ---
 
 <!-- Main -->

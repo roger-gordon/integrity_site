@@ -1,8 +1,8 @@
 <!doctype html>
 <!--
-	Forty by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+Forty by HTML5 UP
+html5up.net | @ajlkn
+Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 -->
 <html>
     {% include head.html %}
@@ -12,15 +12,50 @@
 
         <!-- Banner -->
         <section id="banner" class="major">
+            <video autoplay muted loop playsinline poster="{{ '/assets/images/banner.jpg' | relative_url }}">
+                <source src="{{ '/assets/the-forest-hero.mp4' | relative_url }}" type="video/mp4">
+            </video>
+            <style>
+                /* Make #banner's video fill the section the way background-image
+                   used to. background-image itself is removed since the video
+                   replaces it. */
+                #banner {
+                    background-image: none !important;
+                    overflow: hidden;
+                }
+                #banner video {
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    min-width: 100%;
+                    min-height: 100%;
+                    width: auto;
+                    height: auto;
+                    transform: translate(-50%, -50%);
+                    object-fit: cover;
+                    z-index: 0;
+                }
+                /* Forty's is-loading animation hides #banner>.inner until JS clears
+                   the is-loading class. A <video> in #banner can interfere with that
+                   timing, leaving .inner stuck invisible. Force it visible always. */
+                #banner > .inner {
+                    opacity: 1 !important;
+                    filter: none !important;
+                    transform: none !important;
+                }
+            </style>
             <div class="inner">
                 <header class="major">
-                    <h1>{{ page.landing-title }}</h1>
+                    <h1>the world of knowledge is not flat</h1>
                 </header>
                 <div class="content">
-                    <p>{{ site.description }}</p>
-                    <ul class="actions">
+                    <div>
+                        <p>authors, funders, institutions, publishers, sources, topics, works &mdash; they do not live in rows, they live in relationships</p>
+                        <p>explore the shape of knowledge with Integrity</p>
+                    </div>
+                    <ul class="actions" style="margin-left:auto; flex-shrink:0; list-style:none; padding:0;">
                         <li>
-                            <a href="#one" class="button next scrolly">Start</a>
+                            <a href="#tile-play" class="button circle scrolly">start</a>
                         </li>
                     </ul>
                 </div>
