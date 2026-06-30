@@ -39,7 +39,7 @@ nav-title: about
 
 		<p>Most AI interfaces are still just search boxes with a language model in front. Integrity is something else. The graph database gives structure that is missing from an LLM running over spreadsheets. An LLM gives you answers. Integrity gives you structure. The interface is the conversation — not a chatbot bolted onto a database.</p>
 
-		<p>{{ site.data.stats.works }} works. {{ site.data.stats.data_points }}. {{ site.data.stats.relationships }}. and still growing....</p>
+		<p><span id="about-works">&mdash;</span> works. <span id="about-data-points">&mdash;</span>. <span id="about-relationships">&mdash;</span>. and still growing....</p>
 
 		<hr />
 
@@ -91,4 +91,29 @@ nav-title: about
 
 	</div>
 </section>
+
+<script>
+(function () {
+  var STATUS_URL = "https://integritystatus.blob.core.windows.net/public/status.json";
+
+  function setEl(id, text) {
+    var el = document.getElementById(id);
+    if (el) el.textContent = text;
+  }
+
+  fetch(STATUS_URL, { cache: "no-cache" })
+    .then(function (r) {
+      if (!r.ok) throw new Error("HTTP " + r.status);
+      return r.json();
+    })
+    .then(function (data) {
+      if (data.works) setEl("about-works", data.works);
+      if (data.data_points) setEl("about-data-points", data.data_points);
+      if (data.relationships) setEl("about-relationships", data.relationships);
+    })
+    .catch(function (err) {
+      console.warn("Integrity status fetch failed:", err);
+    });
+})();
+</script>
 </div>

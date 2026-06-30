@@ -46,7 +46,7 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
                 <header class="major">
                     <h1>{{ page.title }}</h1>
                 </header>
-                <div class="content">
+                <div class="content" id="banner-description">
                     {{ page.description }}
                 </div>
             </div>
@@ -55,6 +55,30 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
     {{ content }}
 
     {% include footer.html %}
+
+    {% if page.live-stats %}
+    <script>
+    (function () {
+      var STATUS_URL = "https://integritystatus.blob.core.windows.net/public/status.json";
+
+      fetch(STATUS_URL, { cache: "no-cache" })
+        .then(function (r) {
+          if (!r.ok) throw new Error("HTTP " + r.status);
+          return r.json();
+        })
+        .then(function (data) {
+          var el = document.getElementById("banner-description");
+          if (el && data.data_points && data.relationships) {
+            el.innerHTML = data.data_points + " in " + data.relationships +
+              "&hellip;<br /><br />updated when you ask, because it is your data.";
+          }
+        })
+        .catch(function (err) {
+          console.warn("Integrity status fetch failed:", err);
+        });
+    })();
+    </script>
+    {% endif %}
 
 </body>
 
