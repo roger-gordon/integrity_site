@@ -39,7 +39,7 @@ nav-title: about
 
 		<p>Most AI interfaces are still just search boxes with a language model in front. Integrity is something else. The graph database gives structure that is missing from an LLM running over spreadsheets. An LLM gives you answers. Integrity gives you structure. The interface is the conversation — not a chatbot bolted onto a database.</p>
 
-		<p><span id="about-works">&mdash;</span> works. <span id="about-data-points">&mdash;</span>. <span id="about-relationships">&mdash;</span>. and still growing....</p>
+    <p><span id="about-works">476 million +</span> works. <span id="about-data-points">1.8 billion data points</span>. <span id="about-relationships">4.8 billion relationships</span>. and still growing....</p>
 
 		<hr />
 
