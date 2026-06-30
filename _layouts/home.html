@@ -68,6 +68,29 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
             {% include tiles.html %}
         </div>
 
+        <!-- Live stats: update tile-1 description from blob so numbers match about + data pages -->
+        <script>
+        (function () {
+          var STATUS_URL = "https://integritystatus.blob.core.windows.net/public/status.json";
+          fetch(STATUS_URL, { cache: "no-cache" })
+            .then(function (r) {
+              if (!r.ok) throw new Error("HTTP " + r.status);
+              return r.json();
+            })
+            .then(function (data) {
+              if (!data.data_points || !data.relationships) return;
+              var el = document.querySelector("#tile-the-shape-of-human-knowledge header.major p");
+              if (el) {
+                el.innerHTML = data.data_points + " in " + data.relationships +
+                  "&hellip;<br /><br />updated when you ask, because it is your data.";
+              }
+            })
+            .catch(function (err) {
+              console.warn("Integrity status fetch failed:", err);
+            });
+        })();
+        </script>
+
         {% include footer.html %}
     </body>
 </html>
