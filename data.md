@@ -12,7 +12,7 @@ show_tile: false
 <section id="one">
 	<div class="inner">
 
-		<h2>{{ site.data.stats.data_points }} in {{ site.data.stats.relationships }}</h2>
+		<h2 id="data-headline">1.8 billion data points in 4.8 billion relationships</h2>
 		<p>Integrity is built on the complete OpenAlex scholarly catalogue — every work, every author, every institution, every publisher, every source, every funder, every award, every topic, and the billions of connections between them. With clear provenance and update information.</p>
 
 		<hr />
@@ -90,6 +90,12 @@ show_tile: false
     .then(function (data) {
       var entities = data.entities || [];
       var loaderRunning = !!data.loader_running;
+
+      // Update headline h2 with live data_points + relationships
+      if (data.data_points && data.relationships) {
+        var headline = document.getElementById("data-headline");
+        if (headline) headline.textContent = data.data_points + " in " + data.relationships;
+      }
 
       // Populate each stat cell and description
       entities.forEach(function (e) {
