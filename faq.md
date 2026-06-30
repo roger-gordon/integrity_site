@@ -13,7 +13,7 @@ show_tile: false
 	<div class="inner">
 
 		<h2>Coverage</h2>
-		<p>Integrity is built on OpenAlex, the world's most comprehensive open scholarly database. It currently indexes {{ site.data.stats.works }} works — journal articles, books, conference papers, preprints, and more — along with their authors, institutions, funders, sources, and topics. Coverage spans all disciplines and goes back centuries, with the strongest density in the last 50 years of peer-reviewed research.</p>
+		<p>Integrity is built on OpenAlex, the world's most comprehensive open scholarly database. It currently indexes <span id="faq-works">477 million +</span> works — journal articles, books, conference papers, preprints, and more — along with their authors, institutions, funders, sources, and topics. Coverage spans all disciplines and goes back centuries, with the strongest density in the last 50 years of peer-reviewed research.</p>
 
 		<hr />
 
@@ -48,3 +48,17 @@ show_tile: false
 	</div>
 </section>
 </div>
+
+<script>
+(function () {
+  fetch("https://integritystatus.blob.core.windows.net/public/status.json", { cache: "no-cache" })
+    .then(function (r) { if (!r.ok) throw new Error("HTTP " + r.status); return r.json(); })
+    .then(function (data) {
+      if (data.works) {
+        var el = document.getElementById("faq-works");
+        if (el) el.textContent = data.works;
+      }
+    })
+    .catch(function (err) { console.warn("Integrity status fetch failed:", err); });
+})();
+</script>
